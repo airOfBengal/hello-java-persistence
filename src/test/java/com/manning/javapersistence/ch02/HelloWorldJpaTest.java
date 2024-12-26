@@ -1,6 +1,7 @@
 package com.manning.javapersistence.ch02;
 
 
+import com.manning.javapersistence.ch02.entity.Message;
 import org.junit.jupiter.api.Test;
 
 import javax.persistence.EntityManager;
@@ -21,14 +22,14 @@ public class HelloWorldJpaTest {
             EntityManager em = emf.createEntityManager();
             em.getTransaction().begin();
 
-            Messsage messsage = new Messsage();
-            messsage.setText("Hello World!");
+            Message message = new Message();
+            message.setText("Hello World!");
 
-            em.persist(messsage);
+            em.persist(message);
             em.getTransaction().commit();
 
             em.getTransaction().begin();
-            List<Messsage> messages = em.createQuery("SELECT m FROM Messsage m").getResultList();
+            List<Message> messages = em.createQuery("SELECT m FROM Message m").getResultList();
             messages.get(messages.size()-1).setText("Hello World from JPA!");
 
             em.getTransaction().commit();
